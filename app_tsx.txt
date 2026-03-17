@@ -3,10 +3,13 @@ import Hero from './assets/hero.png';
 import './App.css';
 
 function App() {
+  const groom = 'groom';
+
   return (
     <>
       <input type="text" />
       <img src={Hero} />
+      <p>{groom}</p>
     </>
   );
 }
