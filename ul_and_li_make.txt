@@ -1,0 +1,23 @@
+import ReactDom from 'react-dom/client'
+
+const children = [
+	<li>
+		<a href="https://www.google.com" target="_blank">
+			<p>구글로 가세요</p>	
+		</a>
+	</li>
+	<li>
+		<a href="https://www.instagram.com" target="_blank">
+			<p>인스타로 가세요</p>	
+		</a>
+	</li>
+	<li>
+		<a href="https://www.google.com" target="_blank">
+			<p>네이버로 가세요</p>	
+		</a>
+	</li>
+]
+const rootVirtualDOM = <ul>{children}</ul>
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+root.render(rootVirtualDOM)
