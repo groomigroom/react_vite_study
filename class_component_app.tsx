@@ -2,6 +2,9 @@ import {Component} from 'react';
 
 export default class App extends Component {
   render() {
+    const isLoading = true;
+    if (isLoading) return <p>로딩중입니다.</p>
+
     return (
       <ul>
         <li>
