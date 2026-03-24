@@ -19,6 +19,8 @@ export default class ClassComponent extends Component<ClassComponentProps> {
 }
 
 /*
+React에서 props는 Properties의 줄임말로, 부모 컴포넌트가 자식 컴포넌트에게 데이터를 전달할 때 사용하는 읽기 전용(불변성) 객체입니다. 컴포넌트 간의 데이터 흐름을 단방향으로 유지하며, 데이터를 기반으로 동적인 UI를 렌더링하고 컴포넌트를 재사용하는 데 필수적인 핵심 개념입니다.
+
 이 코드는 **React + TypeScript**로 작성된 *클래스형 컴포넌트*입니다. 하나씩 쉽게 풀어볼게요.
 
 ---
