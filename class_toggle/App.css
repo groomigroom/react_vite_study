@@ -1,0 +1,7 @@
+.div2 {
+  background-color: aqua;
+}
+
+.div2.on {
+  background-color: aquamarine;
+}
