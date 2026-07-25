@@ -199,6 +199,24 @@ z start
 
 ---------------------
 
+type 키워드는 Props, State, 함수 등의 구조를 정의할 때 사용하며, 주요 사용법은 Props 타입 정의, State 타입 정의, 유니온 타입 활용입니다. 공식 가이드는 React TypeScript 가이드를 참고할 수 있습니다.Props 타입 정의컴포넌트가 받는 속성(props)의 모양을 지정할 때 사용합니다.예시:tsxtype BoxProps = {
+  title: string;
+  count?: number; // 선택적 속성
+};
+
+function Box({ title, count = 0 }: BoxProps) {
+  return <div>{title}: {count}</div>;
+}
+코드를 사용할 때는 주의가 필요합니다.State 타입 정의useState 훅을 사용할 때 초기값만으로 추론하기 어려운 복잡한 객체나 빈 값에 타입을 지정합니다.예시:tsxtype User = {
+  name: string;
+  age: number;
+};
+
+const [user, setUser ] = useState<User | null>(null);
+코드를 사용할 때는 주의가 필요합니다.유니온 및 확장 타입여러 개의 타입 중 하나를 갖거나 기존 타입을 합칠 때 사용합니다.예시:tsxtype Status = "success" | "loading" | "error"; // 유니온 타입
+
+type Admin = User & { role: string }; // 교차(Intersection) 타입
+
 
 객체 형태 type 직접 만들기??
 ㅡㅡ
