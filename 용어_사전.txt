@@ -203,7 +203,10 @@ z start
 객체 형태 type 직접 만들기??
 ㅡㅡ
 
-React TSX에서 원하는 이름으로 타입을 만드는 방법은 type 키워드나 interface 키워드를 사용하는 것입니다.타입 정의 방법type 키워드: type 이름 = { 속성: 타입 } 형식으로 정의하며 = 기호가 들어갑니다.interface 키워드: interface 이름 { 속성: 타입 } 형식으로 정의하며 = 기호가 없습니다.코드 예시tsx// 1. type 키워드 사용
+React TSX에서 원하는 이름으로 타입을 만드는 방법은 type 키워드나 interface 키워드를 사용하는 것입니다.
+타입 정의 방법type 키워드: type 이름 = { 속성: 타입 } 형식으로 정의하며 = 기호가 들어갑니다.
+interface 키워드: interface 이름 { 속성: 타입 } 형식으로 정의하며 = 기호가 없습니다.
+코드 예시tsx// 1. type 키워드 사용
 type UserType = {
   name: string;
   age: number;
@@ -227,7 +230,15 @@ function UserProfile({ name, age }: UserType) {
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-type과 interface의 가장 큰 차이는 확장 방식(유니온 지원 여부)과 선언 병합(Declaration Merging) 가능 여부입니다. type은 유니온(|)이나 원시 타입 지정이 가능하지만, interface는 주로 객체 구조 정의와 확장(extends)에 특화되어 있고 같은 이름으로 재선언 시 합쳐집니다.주요 차이점 비교확장(상속): interface는 extends 키워드를 쓰고, type은 교차 타입(&)을 사용합니다.유니온 타입(A | B): type 키워드로만 만들 수 있으며, interface는 직접 유니온을 지정할 수 없습니다.선언 병합: interface는 같은 이름으로 두 번 선언하면 속성이 하나로 합쳐지지만, type은 에러가 납니다.리액트(TSX)에서의 활용컴포넌트 Props: 객체 형태이므로 둘 다 사용 가능합니다. 관례상 일관성 유지를 위해 팀 내에서 하나만 골라 쓰거나, 확장성이 좋은 interface를 선호하는 경우가 많습니다.유니온이 필요한 경우: type Status = 'idle' | 'loading' | 'success'처럼 상태 값을 제한할 때는 반드시 type을 써야 합니다.
+type과 interface의 가장 큰 차이는 확장 방식(유니온 지원 여부)과 선언 병합(Declaration Merging) 가능 여부입니다.
+type은 유니온(|)이나 원시 타입 지정이 가능하지만, interface는 주로 객체 구조 정의와 확장(extends)에 특화되어 있고 같은 이름으로 재선언 시 합쳐집니다.
+주요 차이점 비교
+확장(상속): interface는 extends 키워드를 쓰고, type은 교차 타입(&)을 사용합니다.
+유니온 타입(A | B): type 키워드로만 만들 수 있으며, interface는 직접 유니온을 지정할 수 없습니다.
+선언 병합: interface는 같은 이름으로 두 번 선언하면 속성이 하나로 합쳐지지만, type은 에러가 납니다.
+리액트(TSX)에서의 활용컴포넌트 Props: 객체 형태이므로 둘 다 사용 가능합니다. 
+관례상 일관성 유지를 위해 팀 내에서 하나만 골라 쓰거나, 확장성이 좋은 interface를 선호하는 경우가 많습니다.
+유니온이 필요한 경우: type Status = 'idle' | 'loading' | 'success'처럼 상태 값을 제한할 때는 반드시 type을 써야 합니다.
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
