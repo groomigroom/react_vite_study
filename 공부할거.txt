@@ -29,3 +29,28 @@ export default function App() {
 
 
 -----------------------------위에꺼 분석하기
+
+뭐 어떤 글자로 시작하는지 필터링으로 수정하기 ????? 아래꺼는 분석도 하고,,,,
+
+import { useState } from 'react';
+
+
+export default function App() {
+  const [searchQuery, setSearchQuery] = useState<string>(""); const users = ["Kim", "Lee", "Park", "Choi"];
+  // 사용자가 입력한 글자가 포함된 이름만 필터링
+  const filteredUsers = users.filter(user =>
+    user.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  return (
+    <div>
+      <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+      <ul>
+        {/* 필터링된 배열만 화면에 출력 */}
+        {filteredUsers.map(user => <li key={user}>{user}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+
+-----------------------------위에꺼 분석하기
