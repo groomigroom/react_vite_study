@@ -378,7 +378,18 @@ TypeScript에서는 변수나 매개변수를 만들 때, 콜론(:)을 붙여서
 요약하자면, (e: 내용)은 "브라우저가 던져주는 이벤트 객체(e)를 안전하게 다루기 위해 React가 정한 엄격한 규격서(내용)를 바코드처럼 찍어둔 것"이 원리입니다.
 혹시 이 문법 외에 함수에 내가 원하는 개인적인 값(예: 인덱스 번호나 ID값)을 매개변수로 함께 넘겨주고 싶을 때는 코드를 어떻게 짜야 하는지 궁금하신가요?
 
-[1] [https://witch.work](https://witch.work/posts/react-target-vs-currenttarget)
-[2] [https://inpa.tistory.com](https://inpa.tistory.com/entry/HTML-%F0%9F%93%9A-%ED%8F%BCForm-%ED%83%9C%EA%B7%B8-%EC%A0%95%EB%A6%AC)
-[3] [https://codingeverybody.kr](https://codingeverybody.kr/html-input-%ED%83%9C%EA%B7%B8-%EC%98%AC%EB%B0%94%EB%A5%B8-%EC%9D%B4%ED%95%B4%EC%99%80-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95/)
-[4] [https://oneul-losnue.tistory.com](https://oneul-losnue.tistory.com/24)
+------------------------------
+
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setStr(e.target.value);
+};
+
+
+* const handleInputChange = (...) => { ... }: 화살표 함수(Arrow Function) 형태로 이벤트 핸들러를 정의합니다.
+* e: React.ChangeEvent<HTMLInputElement>: TypeScript의 **타입 주석(Type Annotation)**입니다.
+* React.ChangeEvent: React에서 제공하는 입력 값이 변경되었을 때 발생하는 이벤트의 타입입니다.
+   * <HTMLInputElement>**: 이벤트가 발생하는 대상이 HTML의 <input> 태그임을 명시합니다.
+* e.target.value: 현재 인풋창에 입력된 실제 텍스트 값입니다.
+* setStr(...): 인풋창에 타이핑할 때마다 그 값을 str 상태에 반영하여 화면을 다시 그리도록(리렌더링) 유도합니다.
+
+------------------------------
