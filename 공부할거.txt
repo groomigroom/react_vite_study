@@ -54,3 +54,50 @@ export default function App() {
 
 
 -----------------------------위에꺼 분석하기
+
+
+카테고리 분류 아래꺼 분석하기----
+
+import { useState } from 'react';
+
+interface Product {
+  name: string;
+  category: 'electronics' | 'clothing';
+}
+
+const products: Product[] = [
+  { name: '노트북', category: 'electronics' },
+  { name: '셔츠', category: 'clothing' },
+  { name: '이어폰', category: 'electronics' },
+  { name: '바지', category: 'clothing' },
+];
+
+export default function App() {
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'electronics' | 'clothing'>('all');
+
+  const filteredProducts = selectedCategory === 'all'
+    ? products
+    : products.filter(product => product.category === selectedCategory);
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h2>상품 목록</h2>
+
+      <div style={{ marginBottom: '15px' }}>
+        <button onClick={() => setSelectedCategory('all')}>전체보기</button>
+        <button onClick={() => setSelectedCategory('electronics')} style={{ marginLeft: '10px' }}>전자기기</button>
+        <button onClick={() => setSelectedCategory('clothing')} style={{ marginLeft: '10px' }}>의류</button>
+      </div>
+
+      <ul>
+        {filteredProducts.map((product, index) => (
+          <li key={index}>
+            {product.name} ({product.category})
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+-----------------------------위에꺼 분석하기
