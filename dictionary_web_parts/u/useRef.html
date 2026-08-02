@@ -11,3 +11,46 @@ DOM 직접 제어: 입력창 포커스, 스크롤 위치 이동 등 HTML 요소�
 TypeScript(TSX)에서의 특징
 타입 추론과 제네릭: useRef<HTMLInputElement>(null)처럼 초기값과 DOM 타입을 명시해야 안전합니다.
 Readonly vs Mutable: 초기값 유무에 따라 읽기 전용(RefObject) 또는 수정 가능(MutableRefObject) 타입으로 다르게 지정됩니다.
+
+
+react tsx useref 예제    +5                    React TypeScript(TSX)에서 useRef를 사용하는 방법은 DOM 요소를 직접 제어하거나 값을 기억(저장)하는 두 가지 주요 용도로 나뉩니다. 초기값을 null 또는 알맞은 타입으로 지정해야 합니다. 추가 세부 사항은 Velog Guide 및 Tistory Guide에서 참고할 수 있습니다.DOM 요소 접근 (Input 초점 맞추기)useRef<HTMLInputElement>(null)처럼 제네릭에 HTML 태그 타입을 넣고 초기값으로 null을 전달합니다.지정한 요소를 클릭하거나 불러올 때 current?.focus() 형태로 사용합니다.tsximport React, { useRef } from 'react';
+
+export function TextInputFocus() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleButtonClick = () => {
+    inputRef.current?.focus();
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} type="text" placeholder="글을 입력하세요" />
+      <button onClick={handleButtonClick}>입력창 주목</button>
+    </div>
+  );
+}
+코드를 사용할 때는 주의가 필요합니다.일반 값 저장 (렌더링과 무관한 변수)값이 바뀌어도 화면을 다시 그리지(re-render) 않는 타이머 ID나 숫자 값을 담을 때 사용합니다.초기값의 타입과 일치하도록 제네릭을 지정합니다.tsximport React, { useRef, useState } from 'react';
+
+export function TimerCount() {
+  const [count, setCount] = useState(0);
+  const idRef = useRef<number>(0);
+
+  const startTimer = () => {
+    idRef.current = window.setInterval(() => {
+      setCount((prev) => prev + 1);
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    clearInterval(idRef.current);
+  };
+
+  return (
+    <div>
+      <p>카운트: {count}</p>
+      <button onClick={startTimer}>시작</button>
+      <button onClick={stopTimer}>멈춤</button>
+    </div>
+  );
+}
+코드를 사용할 때는 주의가 필요합니다.만약 자식 컴포넌트에 ref를 전달하는 forwardRef 예제나 다른 HTML 태그 타입이 필요하신가요? 원하시는 구체적인 사용 목적을 알려주시면 알맞은 코드를 안내해 드리겠습니다.티스토리꼭 한번씩은 발생하는 useRef 타입에러2024. 2. 22. — useRef를 사용할 때는 사용 용도에 맞게 타입정의를 해주어야 합니다: * 변경가능하고, 로컬변수로 활용될 수 있는 경우: <>의 타입과 초기값의 타입이 같도록...YouTube·Codevolution3mReact TypeScript Tutorial - 16 - useRef Hook티스토리[TS]TypeScript에서 useRef type 사용 방법 - 개발 공부방 - 티스토리2023. 3. 8. — useRef로 생성한 ref객체의 타입은 아래의 2가지로 정의된다. ... - ref 객체는 React.MutabeRefObject 타입이 되며, ref객체.cu...티스토리[React] 리액트 훅 - useRef(리렌더링 방지 DOM요소 접근)2024. 8. 30. — useRef 훅이전 값과 새로운 값을 연결하고, 렌더링과는 무관하게 값이 유지되어야 할 때 사용됩니다. 주로 DOM 요소나 외부 라이브러리의 인스턴스와 ...티스토리[TypeScript | hooks] useRef 사용법( ref 객체 타입) - 공부 기록일지 - 티스토리2023. 3. 5. — Typescript에서 useRef를 사용할 때에는 용도에 따라서 타입지정이 달라지게 되는데 크게 두 가지로 나눌 수 있다. 1. 값 저장 용도 (current ...티스토리[React] TypeScript useRef 사용법 (+ ref 객체 타입) - 카레유 - 티스토리2022. 8. 11. — TypeScript에서 useRef 사용 방법. TypeScript에서 useRef 사용시, 아래와 같이 제네릭과 초기값을 설정해야 한다. 1. 값 저장 용도.티스토리[React] Typescript에서 React useRef 사용법 - 코딩 1.5 - 티스토리2024. 1. 8. — 일반적으로 JSX 문법으로 이러한 element를 작성하게 된다. 컴포넌트는 청사진 또는 템플릿에 가깝다. 하나의 템플릿(컴포넌트)으로 리엑트는 1개 또는 그 .velogReact + Typescript (3) Ref & useRef 사용하기 - velog2024. 1. 23. — const todoTextInputRef = useRef();. 이제 todoTextInputRef는 input요소라는 타입을 갖고 리액트도 이를 알게되었다. 하...    AI 답변에 오류가 있을 수 있습니다. 자세히 알아보기
