@@ -10,6 +10,7 @@ TypeScript(TSX)에서의 특징
 타입 추론과 제네릭: useRef<HTMLInputElement>(null)처럼 초기값과 DOM 타입을 명시해야 안전합니다.
 Readonly vs Mutable: 초기값 유무에 따라 읽기 전용(RefObject) 또는 수정 가능(MutableRefObject) 타입으로 다르게 지정됩니다.
 
+아래거 컴으로 정리하기
 
 리렌더링
 
