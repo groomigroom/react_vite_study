@@ -48,7 +48,21 @@ const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null); 코드는
 현재 작성하신 코드는 무한히 숫자가 올라가는 구조입니다. 혹시 이미지 슬라이더처럼 마지막 사진 다음에 다시 0번 사진으로 돌아오는 제한 조건이 필요하신가요? 아니면 특정 상황에서 타이머를 일시정지하는 기능이 필요하신지 알려주시면 코드를 보완해 드리겠습니다.
 ------------------------------
 
+이거는 분석하기 !!!!!!!!!!!!
 
+ const handleTransitionEnd = () => {
+        if (currentIndex === SLIDES.length - 1) {
+            setIsTransitioning(false);
+            setCurrentIndex(1);
+        }
+        if (currentIndex === 0) {
+            setIsTransitioning(false);
+            setCurrentIndex(SLIDES.length - 2);
+        }
+    };
+
+
+---------------------------------------
 
 
 -----------------------------------------
