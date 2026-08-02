@@ -72,6 +72,10 @@ ReturnType<...>: 특정 함수가 반환하는 결과값의 타입을 자동으�
 * timeoutRef.current = ...: 브라우저가 발급해 준 이 타이머의 고유 ID 번호를 timeoutRef에 보관합니다. 
 컴포넌트가 리렌더링되어도 이 ID 번호는 지워지지 않고 안전하게 유지됩니다.
 
+아래꺼 컴으로 정리하기
+
+react tsx에서 timeoutRef의 의미                        React TSX에서 timeoutRef는 setTimeout 타이머의 식별자(ID)를 저장하기 위해 useRef 훅으로 만든 변수입니다.핵심 의미와 역할타이머 ID 저장: setTimeout 실행 시 반환되는 타이머 ID를 current 속성에 보관합니다.재렌더링 방지: 값이 바뀌어도 컴포넌트를 다시 렌더링시키지 않습니다.메모리 누수 및 버그 방지: 컴포넌트가 사라지거나(unmount) 새로운 타이머가 설정되기 전에 기존 타이머를 clearTimeout으로 취소할 수 있게 해줍니다.주요 활용 목적중복 실행 방지: 입력(input) 지연 검색(debounce)이나 자동 저장 기능 구현 시 이전 타이머 지우기.컴포넌트 생명주기 관리: 화면이 닫힐 때 작동 중인 타이머를 정리(cleanup)하기.타이머를 활용하는 디바운스(debounce)나 스로틀(throttle) 예시 코드가 필요하신가요?velog[React]리액트 컴포넌트에서 setTimeout 사용하기 - velog2022. 5. 2. — setTimeout 함수는 두 가지 인수를 필요로 합니다. 하나는 우리가 실행하려는 콜백함수이고, 다른 하나는 콜백함수가 호출되기 까지의 지연 시간을 밀리초 ..    AI 답변에 오류가 있을 수 있습니다. 자세히 알아보기
+
 ## 3. setCurrentIndex((prev) => prev + 1);
 
 * 의미: 3초가 지나면 현재 인덱스 값(prev)에 1을 더해서 상태를 업데이트합니다.
