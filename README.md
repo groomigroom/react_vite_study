@@ -2,6 +2,8 @@
 
 https://groomigroom.github.io/react_vite_study/
 
+generic까지 정리하다맘
+
 vite.new/react-ts
 에서 온라인으로 vite ts 프로젝트 만들 수 있음.
 
