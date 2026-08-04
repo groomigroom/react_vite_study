@@ -1,3 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom</title>
+</head>
+
+<body>
+    <h1>dom</h1>
+    <p>
+        React TSX에서 DOM은 웹 브라우저가 HTML 문서를 인식하는 방식인 문서 객체 모델(DOM)과,<br />
+        리액트가 성능을 높이기 위해 메모리 안에 만드는 가상 DOM(Virtual DOM)을 뜻합니다.<br />
+        TSX 안에서 코드를 쓰면 리액트는 화면을 직접 바꾸지 않고,<br />
+        먼저 가상 DOM을 고친 뒤에 진짜 DOM과 비교하여 바뀐 곳만 빠르게 칠합니다.<br />
+        DOM의 기본 개념실제 DOM(Real DOM): 브라우저가 화면에 보여주는 태그들의 진짜 나무 모양 구조입니다.<br />
+        가상 DOM(Virtual DOM): 리액트가 메모리 속에서만 다루는 가짜 복사본 구조입니다.<br />
+        TSX 역할: HTML처럼 보이는 코드를 적어 리액트가 이해할 수 있는 가상 DOM 객체로 바꿔줍니다.<br />
+        <br />
+        TSX에서 DOM을 다룰 때의 특징직접 조작 피하기: document.getElementById처럼 진짜 DOM을 직접 건드리는 일은 리액트에서 피해야 합니다.<br />
+        상태(State) 중심: 대신 데이터(상태)를 바꾸면 리액트가 알아서 가상 DOM을 고치고 진짜 DOM에 반영합니다.<br />
+        useRef 사용: 진짜 DOM 요소에 꼭 접근해야 할 때만 useRef라는 도구를 씁니다.
+    </p>
+</body>
+
+</html>
+
 forwardRref
 
 React TSX에서 forwardRef는 부모 컴포넌트의 ref를 자식 커스텀 컴포넌트로 전달해 내부 DOM에 접근하게 돕는 기능이며,
