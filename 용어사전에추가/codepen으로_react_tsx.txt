@@ -1,8 +1,17 @@
 codepen으로 react tsx 작업하기..
 
-
-CodePen은 순수 JS/TS 환경에 가깝기 때문에 .tsx 파일을 직접 지원하지는 않습니다. 하지만 Settings에서 TypeScript 프리프로세서와 React/ReactDOM 외부 라이브러리를 설정하면 브라우저에서 JSX와 TypeScript 문법을 그대로 사용할 수 있습니다.CodePen에서 React TSX 환경 설정하는 법Settings 열기: 화면 우측 상단의 Settings 버튼을 클릭합니다.JS 프리프로세서 설정: JS 탭으로 이동한 뒤, JavaScript Preprocessor에서 TypeScript 또는 Babel을 선택합니다 (TypeScript 타입 검사를 위해 TypeScript 선택).외부 라이브러리 추가: 같은 JS 탭의 Add External Scripts 검색창에서 아래 두 라이브러리를 검색해 추가합니다:react (React 라이브러리)react-dom (React DOM 라이브러리)HTML 설정: HTML 탭에 리액트가 렌더링될 빈 요소를 만듭니다.html<div id="root"></div>
-코드를 사용할 때는 주의가 필요합니다.TSX 코드 작성: JS 탭에 타입 정의와 JSX가 포함된 코드를 작성합니다.tsxinterface Props {
+CodePen은 순수 JS/TS 환경에 가깝기 때문에 
+tsx 파일을 직접 지원하지는 않습니다
+ 하지만 Settings에서 TypeScript 프리프로세서와 React/ReactDOM 외부 라이브러리를 설정하면 브라우저에서 JSX와 TypeScript 문법을 그대로 사용할 수 있습니다
+CodePen에서 React TSX 환경 설정하는 법Settings 열기: 화면 우측 상단의 Settings 버튼을 클릭합니다
+JS 프리프로세서 설정: JS 탭으로 이동한 뒤, JavaScript Preprocessor에서 TypeScript 또는 Babel을 선택합니다 (TypeScript 타입 검사를 위해 TypeScript 선택)
+외부 라이브러리 추가: 같은 JS 탭의 Add External Scripts 검색창에서 아래 두 라이브러리를 검색해 추가합니다:react (React 라이브러리)react-dom (React DOM 라이브러리)
+HTML 설정: HTML 탭에 리액트가 렌더링될 빈 요소를 만듭니다
+html<div id="root"></div>
+코드를 사용할 때는 주의가 필요합니다
+TSX 코드 작성: JS 탭에 타입 정의와 JSX가 포함된 코드를 작성합니다
+tsx
+interface Props {
   name: string;
 }
 
