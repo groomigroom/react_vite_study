@@ -1,52 +1,14 @@
-.filter
 
-리액트 TSX에서 .filter 메서드는 주로 인터페이스(Interface)나 타입(Type)이 지정된 배열 데이터를 조건에 따라 골라내어 화면에 렌더링하거나, 특정 아이템을 삭제(제외)할 때 사용합니다.tsx
-
-import React, { useState } from 'react';
-
-interface User {
-  id: number;
-  name: string;
-  isAdmin: boolean;
-}
-
-export default function UserList() {
-  const [users, setUsers] = useState<User[]>([
-    { id: 1, name: '철수', isAdmin: false },
-    { id: 2, name: '영희', isAdmin: true },
-    { id: 3, name: '민수', isAdmin: false },
-  ]);
-
-  // 관리자만 골라내는 filter 예제
-  const adminUsers = users.filter((user) => user.isAdmin);
-
-  // 특정 id를 가진 유저를 삭제(제외)하는 예제
-  const removeUser = (id: number) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
-
-  return (
-    <div>
-      <h3>관리자 목록</h3>
-      <ul>
-        {adminUsers.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-
-주요 활용 방법
-조건부 렌더링: .filter()로 특정 조건(예: user.isAdmin)에 맞는 요소만 남긴 뒤 .map()으로 화면에 출력합니다.
-데이터 삭제: 불변성을 지키며 삭제하려는 아이템의 id가 아닌 항목들만 남겨 새로운 배열을 만듭니다.
-검색 기능: 입력창(input)의 검색어 상태값과 일치하는 항목만 필터링합니다.
-
-
---------------------------------------------------
-
-<label htmlFor="title">제목</label> <input type="text" name="title" placeholder="텍스트 입력" /> 이런식으로 react tsx에서 작성하면 title로 연결이 되나?네, htmlFor="title"과 id="title"을 함께 써야 연결됩니다. 현재 코드에는 id가 없어서 연결되지 않습니다.수정 방법<label htmlFor="title">과 <input id="title" ... /> 형태로 id를 추가해야 합니다.name="title"은 서버로 데이터를 보낼 때 쓰는 이름이므로, 라벨과 클릭 시 커서 이동 연결과는 다릅니다.올바른 코드 예시<label htmlFor="title">제목</label><input type="text" id="title" name="title" placeholder="텍스트 입력" />더 궁금한 점이 있다면 언제든지 질문해 주세요!AI 대답에는 오류가 있을 수 있습니다. 자세히 알아보기그러면 htmlFor의 의미는?htmlFor는 HTML의 for 속성을 리액트(JSX/TSX)에서 부르는 이름입니다.핵심 역할웹 접근성 향상: 화면 낭독기(스크린 리더)가 라벨과 입력창의 연관성을 인식합니다.사용자 편의성: "제목"이라는 글씨만 클릭해도 입력창(input)에 자동으로 포커스(커서)가 갑니다.왜 for 대신 htmlFor를 쓰나요?리액트의 JSX/TSX는 자바스크립트(JS) 문법을 기반으로 합니다.자바스크립트에는 이미 반복문을 뜻하는 for라는 예약어가 존재합니다.따라서 충돌을 막기 위해 리액트에서는 htmlFor라는 이름을 사용합니다.마찬가지 이유로 HTML의 class를 리액트에서는 className으로 씁니다.추가로 리액트 폼(Form) 요소의 이벤트 처리나 상태 관리(State) 방법이 궁금하시다면 언제든 말씀해 주세요!
+<label htmlFor="title">제목</label> 
+<input type="text" name="title" placeholder="텍스트 입력" /> 
+이런식으로 react tsx에서 작성하면 title로 연결이 되나?
+네, htmlFor="title"과 id="title"을 함께 써야 연결됩니다.
+현재 코드에는 id가 없어서 연결되지 않습니다.
+수정 방법<label htmlFor="title">과 <input id="title" ... /> 형태로 id를 추가해야 합니다.
+name="title"은 서버로 데이터를 보낼 때 쓰는 이름이므로, 
+라벨과 클릭 시 커서 이동 연결과는 다릅니다.
+올바른 코드 예시
+<label htmlFor="title">제목</label><input type="text" id="title" name="title" placeholder="텍스트 입력" />
 
 
 --------------------------------------
