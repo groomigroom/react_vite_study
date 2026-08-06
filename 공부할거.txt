@@ -1,36 +1,4 @@
 
-<label htmlFor="title">제목</label> 
-<input type="text" name="title" placeholder="텍스트 입력" /> 
-이런식으로 react tsx에서 작성하면 title로 연결이 되나?
-네, htmlFor="title"과 id="title"을 함께 써야 연결됩니다.
-현재 코드에는 id가 없어서 연결되지 않습니다.
-수정 방법<label htmlFor="title">과 <input id="title" ... /> 형태로 id를 추가해야 합니다.
-name="title"은 서버로 데이터를 보낼 때 쓰는 이름이므로, 
-라벨과 클릭 시 커서 이동 연결과는 다릅니다.
-올바른 코드 예시
-<label htmlFor="title">제목</label><input type="text" id="title" name="title" placeholder="텍스트 입력" />
-
-
---------------------------------------
-
-
-useRef
-
-React TSX(TypeScript)에서 useRef는 리렌더링을 유발하지 않고 값을 유지하거나 특정 DOM 요소에 직접 접근할 때 사용하는 훅입니다. 
-TSX 환경에서는 안전한 타입 지정을 위해 제네릭을 활용합니다.
-주요 의미와 용도
-DOM 직접 제어: 입력창 포커스, 스크롤 위치 이동 등 HTML 요소에 직접 접근.
-값 저장: 타이머 ID, 이전 값 등 화면 표출(렌더링)과 관계없는 데이터를 보존.
-리렌더링 방지: current 값이 바뀌어도 컴포넌트가 다시 그려지지 않아 성능 최적화에 기여.
-TypeScript(TSX)에서의 특징
-타입 추론과 제네릭: useRef<HTMLInputElement>(null)처럼 초기값과 DOM 타입을 명시해야 안전합니다.
-Readonly vs Mutable: 초기값 유무에 따라 읽기 전용(RefObject) 또는 수정 가능(MutableRefObject) 타입으로 다르게 지정됩니다.
-
-
------------
-
-아래거 컴으로 정리하기
-
 리렌더링
 
 웹사이트(특히 리액트 같은 프론트엔드 프레임워크)에서 리렌더링이 유발되는 주요 이유는 상태(State) 변경,
