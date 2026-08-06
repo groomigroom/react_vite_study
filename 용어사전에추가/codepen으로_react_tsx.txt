@@ -21,8 +21,5 @@ const Greeting = ({ name }: Props) => {
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(<Greeting name="TypeScript" />);
-코드를 사용할 때는 주의가 필요합니다.코드펜에서 리액트 환경을 구축하고 실행하는 방법을 설명하는 영상입니다:5mBuilding a React Development Environment Using Codepen ...조회수: 1.2만 · 7년 전YouTube · 동빈나만약 특정 외부 라이브러리(예: Lucide 아이콘, Tailwind CSS 등)를 추가하는 방법이나 상태 관리(useState 등) 예제가 필요하신가요?
-
-
 
 -----------------------------------------------------
