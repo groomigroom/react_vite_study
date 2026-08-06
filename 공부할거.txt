@@ -1,6 +1,8 @@
 .filter
 
-리액트 TSX에서 .filter 메서드는 주로 인터페이스(Interface)나 타입(Type)이 지정된 배열 데이터를 조건에 따라 골라내어 화면에 렌더링하거나, 특정 아이템을 삭제(제외)할 때 사용합니다.tsximport React, { useState } from 'react';
+리액트 TSX에서 .filter 메서드는 주로 인터페이스(Interface)나 타입(Type)이 지정된 배열 데이터를 조건에 따라 골라내어 화면에 렌더링하거나, 특정 아이템을 삭제(제외)할 때 사용합니다.tsx
+
+import React, { useState } from 'react';
 
 interface User {
   id: number;
