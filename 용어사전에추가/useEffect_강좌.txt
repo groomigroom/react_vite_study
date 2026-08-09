@@ -1,19 +1,28 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 function App() {
     const [count, setCount] = useState(1);
+    const [name, setName] = useState("");
 
     const handleCountUpdate = () => {
         setCount(count + 1);
     };
 
+    useEffect (() => {
+        console.log('렌더링됨');
+    })
+
     return (
         <div>
             <button onClick={handleCountUpdate}>Update</button>
             <span>count: {count}</span>
+            <input type="text" value={name} onChange={handleInputChange}/>
+            <span>name: {name}</span>
         </div>
     );
 }
 
 export default App;
+
+
 https://youtu.be/kyodvzc5GHU?si=90ryk3964vBMQVgb
