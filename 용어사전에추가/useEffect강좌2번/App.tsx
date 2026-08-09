@@ -3,12 +3,13 @@ import {useState, useEffect} from 'react';
 import Timer from './Timer';
 
 function App() {
-   
+   const [showTimer, setShowTimer] = useState(false);
+
 
     return (
         <div>
-            <Timer/>
-            <button>Toggle Timer</button>
+            {showTimer && <Timer/>}
+            <button onClick={() => setShowTimer(!showTimer)}>Toggle Timer</button>
         </div>
     );
 }
