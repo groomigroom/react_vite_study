@@ -8,9 +8,22 @@ function App() {
         setCount(count + 1);
     };
 
+    const handleInputChange = (e) => {
+        setName(e.target.value);
+    };
+
     useEffect (() => {
         console.log('렌더링됨');
-    })
+    });
+
+    //위에꺼 없애고 아래꺼 해보기
+    // useEffect (() => {
+    //     console.log('렌더링됨');
+    // }, [count]);
+
+    // useEffect (() => {
+    //     console.log('렌더링됨');
+    // }, [name]);
 
     return (
         <div>
