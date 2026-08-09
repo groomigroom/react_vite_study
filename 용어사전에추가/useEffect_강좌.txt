@@ -25,6 +25,11 @@ function App() {
     //     console.log('렌더링됨');
     // }, [name]);
 
+
+    // useEffect (() => {
+    //     console.log('마운팅??');
+    // }, []);
+
     return (
         <div>
             <button onClick={handleCountUpdate}>Update</button>
