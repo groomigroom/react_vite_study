@@ -1,0 +1,1 @@
+React TSX에서는 for 대신 htmlFor 속성을 사용해야 합니다. 자바스크립트의 예약어인 for와 충돌하기 때문입니다. 따라서 <label htmlFor="tab1"></label> 형태로 작성해야 올바르게 동작합니다.올바른 문법 사용하기예약어 충돌: 자바스크립트 for 반복문과 이름이 겹칩니다.대체 속성: 리액트에서는 htmlFor를 씁니다.동작 방식: HTML의 for와 기능이 같습니다. 지정한 id를 가진 입력 요소와 연결됩니다.코드 비교잘못된 코드: <label for="tab1">제목</label> (에러 또는 무시됨)올바른 코드: <label htmlFor="tab1">제목</label>
