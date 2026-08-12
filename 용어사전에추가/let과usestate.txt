@@ -26,3 +26,73 @@ React에서 let 변수 값 변경과 useState의 가장 큰 차이는 리렌더�
 
 
 
+
+React TSX에서 let 변수와 useState의 차이를 가장 확실하게 볼 수 있는 카운터(Counter) 컴포넌트 예시입니다.
+코드를 복사해서 실행해 보면 let은 화면이 바뀌지 않고, useState만 화면이 바뀌는 것을 바로 확인할 수 있습니다.
+------------------------------
+## 💻 예시 코드 (Counter.tsx)
+
+import React, { useState } from 'react';
+export default function Counter() {
+  // 1. let 변수 선언 (초기값 0)
+  let letCount = 0;
+
+  // 2. useState 상태 선언 (초기값 0)
+  const [stateCount, setStateCount] = useState<number>(0);
+
+  // let 변수 증가 함수
+  const increaseLet = () => {
+    letCount += 1;
+    console.log(`letCount 값 변경됨: ${letCount}`); 
+    // 콘솔에는 숫자가 올라가지만, 화면은 변하지 않습니다.
+  };
+
+  // useState 상태 증가 함수
+  const increaseState = () => {
+    setStateCount(stateCount + 1);
+    // 값이 바뀌면서 컴포넌트가 리렌더링되고 화면이 갱신됩니다.
+    // 이때, 위쪽의 letCount는 다시 0으로 초기화됩니다.
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+      <h2>React 변수 vs 상태 비교</h2>
+      
+      {/* let 변수 영역 */}
+      <div style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
+        <h3>1. let 변수 (일반 변수)</h3>
+        <p>현재 값: <strong>{letCount}</strong></p>
+        <button onClick={increaseLet}>let 증가</button>
+        <p style={{ color: 'gray', fontSize: '12px' }}>
+          * 버튼을 누르면 콘솔창 로그는 찍히지만 화면 숫자는 안 바뀝니다.
+        </p>
+      </div>
+
+      {/* useState 상태 영역 */}
+      <div style={{ border: '1px solid #ccc', padding: '10px' }}>
+        <h3>2. useState (상태)</h3>
+        <p>현재 값: <strong>{stateCount}</strong></p>
+        <button onClick={increaseState}>state 증가</button>
+        <p style={{ color: 'gray', fontSize: '12px' }}>
+          * 버튼을 누르면 화면 숫자가 올라갑니다. (이때 let 변수는 다시 0이 됩니다.)
+        </p>
+      </div>
+    </div>
+  );
+}
+
+------------------------------
+## 👀 실행했을 때 일어나는 현상
+
+   1. let 증가 버튼을 누를 때
+   * letCount 변수의 값은 실제로 1, 2, 3... 증가합니다.
+      * 하지만 React는 화면을 다시 그리지 않으므로, 화면의 현재 값은 계속 0으로 보입니다.
+   2. state 증가 버튼을 누를 때
+   * setStateCount가 호출되면서 화면이 다시 그려집니다(리렌더링).
+      * 화면의 state 현재 값이 1로 바뀝니다.
+      * ⚠️ 중요: 이때 컴포넌트 함수가 처음부터 다시 실행되므로, let letCount = 0; 코드가 다시 실행되어 let 변수는 기존에 더해놨던 값이 사라지고 다시 0으로 초기화됩니다.
+   
+------------------------------
+현재 구현하려는 기능 중에 어떤 데이터를 저장하거나 화면에 보여주어야 하나요? 어떤 기능인지 말씀해 주시면 let을 써야 할지, useState를 써야 할지 명확하게 구분해 드릴게요.
+
+
