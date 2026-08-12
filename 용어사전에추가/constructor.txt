@@ -1,0 +1,24 @@
+react tsx에서 constructor의 의미?    +1                    React TSX(TypeScript + React)에서 constructor(생성자)는 클래스형 컴포넌트(class component)가 생성될 때 가장 먼저 실행되는 초기화 메서드입니다. 주로 this.state 초기화나 이벤트 메서드 바인딩에 사용됩니다. 현대 리액트에서는 클래스 대신 함수형 컴포넌트와 훅(Hook)을 주로 쓰기 때문에 잘 쓰이지 않지만, 레거시 코드나 클래스형 구조에서 볼 수 있습니다.주요 역할과 특징컴포넌트 초기화: 컴포넌트가 화면에 마운트(렌더링)되기 전 실행됩니다.super(props) 필수: 타입스크립트/자바스크립트 클래스에서 부모 클래스(React.Component)의 기능을 상속받으려면 반드시 super(props)를 먼저 호출해야 합니다. 안 하면 this.props를 쓸 때 에러가 납니다.this.state 정의: TSX 환경에서 상태의 타입을 지정하며 this.state = { ... } 형태로 초기값을 넣습니다.코드 예시 (TypeScript 클래스형 컴포넌트)tsximport React, { Component } from 'react';
+
+interface Props {
+  name: string;
+}
+
+interface State {
+  count: number;
+}
+
+class Counter extends Component<Props, State> {
+  // constructor 정의
+  constructor(props: Props) {
+    super(props); // 부모 생성자 호출
+    this.state = {
+      count: 0, // state 초기화
+    };
+  }
+
+  render() {
+    return <div>{this.state.count}</div>;
+  }
+}
+코드를 사용할 때는 주의가 필요합니다.현대 리액트(TSX)에서의 변화최신 리액트와 TSX 환경에서는 constructor와 super를 쓰지 않고 클래스 필드(Class Fields) 문법으로 바로 state를 선언할 수 있습니다.또한 함수형 컴포넌트(const MyComponent = () => {})와 useState 훅을 사용하므로 constructor를 직접 작성할 일은 거의 없습니다.혹시 클래스형 컴포넌트 코드를 분석하고 계시나요, 아니면 함수형 컴포넌트에서 state를 다루는 방법으로 변경하는 도움이 필요하신가요?티스토리[2019.07.13] React에 TypeScript를 적용하면 constructor를 쓰지 않는다?2019. 7. 13. — 그리고 우리가 알고 있듯이, constructor 안에 super문과 this.state를 선언하여 해당 컴포넌트의 state 값을 생성한다. 그런데 여기서 재미...티스토리[React] constructor() 생성자 사용법 - 밀래 - 티스토리2020. 2. 3. — class TempComponent extends Component{ constructor(props){ super(props); } render(){ retur...ReactReact.ComponentReact.Component. These docs are old and won't be updated. Go to react.dev for the new Reac...velog[TIL]Class & State에서 Constructor와 Super를 쓰는 이유2021. 7. 25. — ... 들어가기전에 클래스형 컴포넌트! React를 사용할 때 컴포넌트를 정의하기 위해서는 두가지 방법을 사용한다. 함수로 정의! CLASS로 정의. 이 방법을 ...    AI 답변에 오류가 있을 수 있습니다. 자세히 알아보기
