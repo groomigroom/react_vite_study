@@ -1,0 +1,6 @@
+React의 useState가 반환한 상태 변경 함수(SetAespa_e_count_now)에 직접 값을 대입했기 때문입니다. SetAespa_e_count_now = 1처럼 쓰면 안 되고, 함수를 호출해 값(SetAespa_e_count_now(1))을 넣어주어야 합니다. 또한 관례상 상태 변경 함수 이름은 소문자로 시작하는 것이 좋습니다.오류 수정 방법상태 변경 함수를 호출할 때 소괄호 () 사용하기SetAespa_e_count_now 대신 setAespaECountNow 처럼 낙타표기법(camelCase) 쓰기올바른 코드 예시tsxconst [aespaECountNow, setAespaECountNow] = useState(0);
+
+if (aespa_e_value1 === 'l') {
+  setAespaECountNow(1);
+}
+코드를 사용할 때는 주의가 필요합니다.
