@@ -14,4 +14,9 @@ CSS 속성 이름은 대소문자를 구분하는
 숫자인 경우 일부 속성(예: zIndex, opacity)은 
 숫자 값 그대로 쓸 수도 있습니다.
 객체 변수로 분리하여 적용하기
-TSX 컴포넌트 상단이나 외부에 스타일 객체를 미리 선언합니다.타입스크립트를 쓸 경우 React.CSSProperties 타입을 지정해 주면 자동 완성 및 타입 검사를 지원받아 편리합니다.const boxStyle: React.CSSProperties = { backgroundColor: 'blue', padding: '10px' };<div style={boxStyle}>상자</div> 형식으로 속성에 넣어줍니다.더 자세한 문법과 활용법을 확인하려면 다음 영상을 참고하세요:인라인 스타일 객체 작성법과 카멜케이스 규칙을 시각적으로 확인할 수 있는 영상입니다.인라인 스타일 객체 작성법과 카멜케이스 규칙을 시각적으로 확인할 수 있는 영상입니다:6:10Styling JSX Elements Using JavaScript Objects in React1년 전YouTube · ProgrammingKnowledge인라인 스타일 내에서 조건부 스타일링(삼항 연산자 등)을 적용하는 법이나 CSS 타입 관련해서 더 궁금한 점이 있으신가요?Reddit·r/reactjsreact 앱에서 keyframe 애니메이션을 인라인 스타일링으로 쓰는 방법은?2023. 4. 28. — 이 keyframe css를 react tsx 파일에서 인라인 스타일링으로 쓰는 방법이 있나요? 저는 sass 모듈을 사용하고 있는데, 아래 코드는 로컬에서는 잘...티스토리[React] 리액트에서 CSS 적용하는 여러가지 방식(Import, 인라인, CSS ...2024. 9. 20. — 인라인(inline) 스타일. HTML 태그에 직접 스타일을 적용하는 방식으로, style={ } 형식을 사용하여 객체 형태로 작성합니다. CSS 속성명에 -가 ...YouTube·ProgrammingKnowledge6:10Styling JSX Elements Using JavaScript Objects in ReactYouTube·CodeLucky3mReact Inline Styles: The Ultimate Guide for Beginners (2025)티스토리[react] react에서 inline style 적용 방법 (ft. 인라인 css) - 코딩하는 갓디노2021. 12. 22. — react에서 inline style(inline css) 적용 방법입니다. 인라인 스타일 방식은 태그 내에 자바스크립트 객체 형식으로 직접 넣는 스타일 방식입니...YouTube·Code Stoic6mReactJS Tutorial 33: Todo App Part 6 Inline Styling In React ComponentsGitHub[React] 리액트에서 동적으로 스타일 적용하기2022. 10. 3. — inline에서 스타일을 직접 지정할 경우 이중괄호를 사용합니다. 바깥 중괄호는 JSX 내 자바스크립트 코드를 사용하기 위한 중괄호이며, 내부 중괄호는 객체 리터...    AI 답변에 오류가 있을 수 있습니다. 자세히 알아보기
+TSX 컴포넌트 상단이나 외부에 스타일 객체를 미리 선언합니다.타입스크립트를 쓸 경우 React.CSSProperties 타입을 지정해 주면 자동 완성 및 타입 검사를 지원받아 편리합니다.const boxStyle: React.CSSProperties = { backgroundColor: 'blue', padding: '10px' };
+<div style={boxStyle}>상자</div> 형식으로 속성에 넣어줍니다.
+
+
+
+
