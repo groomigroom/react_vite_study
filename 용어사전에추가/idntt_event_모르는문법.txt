@@ -1,1 +1,0 @@
-const node3 = node2?.Idntt_e_link;
