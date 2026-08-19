@@ -1,0 +1,78 @@
+useEffect는 리액트 컴포넌트가 화면에 렌더링된 이후, 컴포넌트 외부의 시스템과 동기화하거나 추가적인 작업(Side Effect)을 처리할 때 사용하는 리액트의 핵심 훅(Hook)입니다. [1, 2] 
+.tsx 확장자는 단지 리액트(JSX)에 타입스크립트(TypeScript)가 더해진 환경임을 의미하므로, useEffect의 본질적인 역할은 일반 자바스크립트(.jsx) 환경과 동일합니다. 다만 타입스크립트 환경에서는 내부 변수나 함수의 타입 안정성이 추가로 보장됩니다.
+------------------------------
+## 💡 주요 역할: Side Effect(부수 효과) 처리
+리액트 컴포넌트의 기본 목적은 UI를 그리는 것입니다. UI를 그리는 과정 외에 컴포넌트 외부와 상호작용하는 모든 작업을 'Side Effect'라고 부르며, useEffect 안에서 안전하게 처리합니다. [2, 3] 
+
+* 
+* 서버에서 데이터 가져오기 (API Fetching)
+* 브라우저 이벤트 리스너 등록 및 해제 (window resize, scroll 등)
+* 타이머 설정 (setTimeout, setInterval)
+* 직접적인 DOM 조작 (외부 라이브러리 연동 등) [2, 4] 
+* 
+
+------------------------------
+## ⚙️ 어떻게 사용하나요? (3가지 실행 패턴)
+useEffect는 두 번째 인자인 의존성 배열(Dependency Array)에 무엇을 넣느냐에 따라 실행 시점이 완전히 달라집니다. [5, 6] 
+## 1. 컴포넌트가 처음 나타날 때만 실행 (Mount) [4] 
+배열을 비워두면([]), 컴포넌트가 화면에 처음 그려진 직후에 딱 한 번만 실행됩니다. 보통 초기 API 데이터를 요청할 때 씁니다. [4, 7] 
+
+useEffect(() => {
+  console.log("컴포넌트가 화면에 처음 나타남");
+}, []); // 빈 배열
+
+## 2. 특정 값이 바뀔 때마다 실행 (Update) [4] 
+배열에 상태나 props 값을 넣으면, 해당 값이 변경될 때마다 실행됩니다. [5, 6] 
+
+const [count, setCount] = useState<number>(0);
+
+useEffect(() => {
+  console.log(`count가 ${count}로 변경되었습니다.`);
+}, [count]); // count가 바뀔 때만 실행
+
+## 3. 컴포넌트가 사라지거나 다음 실행 직전 (Unmount / Cleanup) [8] 
+함수 내부에서 또 다른 함수를 return 하면, 이를 클린업(Cleanup) 함수라고 부릅니다. 컴포넌트가 화면에서 사라지거나, 다음 effect가 실행되기 전에 기존 작업(메모리 누수 유발 요소)을 정리하는 역할을 합니다. [1, 5, 6, 9, 10] 
+
+useEffect(() => {
+  console.log("구독 시작");
+
+  return () => {
+    console.log("구독 해제 (클린업)"); // 뒷정리 작업
+  };
+}, []);
+
+------------------------------
+## 🟦 TSX 환경에서의 차이점
+.tsx 환경에서 useEffect를 쓸 때 꼭 알아야 할 문법적 특징은 다음과 같습니다.
+
+* 
+* 반환값(Return)의 타입 제한: useEffect 내부의 return은 오직 아무것도 반환하지 않는 함수(() => void)만 허용합니다. 비동기 함수(async/await)를 useEffect 자체에 직접 붙이면 Promise를 반환하게 되므로 타입 에러가 발생합니다.
+
+// ❌ 잘못된 예시 (타입 에러 발생)
+useEffect(async () => {
+  const data = await fetchData();
+}, []);
+// ⭕ 올바른 예시 (내부에서 async 함수를 따로 선언하여 호출)
+useEffect(() => {
+  const loadData = async () => {
+    const data = await fetchData();
+  };
+  loadData();
+}, []);
+
+[1] 
+* 
+
+------------------------------
+useEffect를 활용해 구현하고 싶은 구체적인 기능(예: API 데이터 불러오기, 타이머 만들기 등)이 있으신가요? 필요하시다면 타입스크립트 기반의 실제 적용 코드를 짜드릴 수 있습니다.
+
+[1] [https://ko.react.dev](https://ko.react.dev/reference/react/useEffect)
+[2] [https://velog.io](https://velog.io/@jinyoung985/React-useEffect%EB%9E%80)
+[3] [https://codestation.tistory.com](https://codestation.tistory.com/51)
+[4] [https://medium.com](https://medium.com/@learnwebdev/%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9B%85-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-usestate-useeffect-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EB%8D%94-%EB%A7%8E%EC%9D%80-%ED%9B%85%EB%93%A4-3d6937ed07d1)
+[5] [https://www.youtube.com](https://www.youtube.com/watch?v=3gPpRhYGjTc&t=239)
+[6] [https://dongubak.tistory.com](https://dongubak.tistory.com/44)
+[7] [https://www.reddit.com](https://www.reddit.com/r/reactjs/comments/wdb8dh/what_is_the_purpose_exactly_of_useeffect/?tl=ko)
+[8] [https://developer-alle.tistory.com](https://developer-alle.tistory.com/420)
+[9] [https://choyeon-dev.tistory.com](https://choyeon-dev.tistory.com/10)
+[10] [https://docs.tosspayments.com](https://docs.tosspayments.com/blog/react-use-effect)
