@@ -1,0 +1,62 @@
+onTransitionEnd는 React TSX에서 CSS Transition(애니메이션 효과)이 완전히 끝났을 때 특정 함수를 실행하도록 만드는 이벤트 핸들러입니다.
+HTML의 ontransitionend 이벤트를 React의 카멜 케이스(CamelCase) 문법으로 작성한 것입니다.
+## 💡 왜 이 코드가 필요할까요?
+
+   1. 상태 동기화
+   CSS 애니메이션이 끝나는 타이밍에 맞춰 React의 상태(State)를 변경할 수 있습니다.
+   2. DOM 요소 제거
+   "스르륵 사라지는(Fade-out)" CSS 효과가 완전히 끝난 직후에 HTML 요소를 화면에서 아예 없애고 싶을 때 사용합니다.
+   3. 자바스크립트 타이머 대체
+   setTimeout으로 애니메이션 시간을 억지로 맞추지 않아도, CSS가 끝나는 시점을 정확하게 감지하므로 안전합니다.
+
+------------------------------
+## 🔍 활용 예시 코드
+가장 흔하게 쓰이는 "페이드아웃 애니메이션이 끝난 후 요소를 완전히 제거하는" 예제입니다.
+
+import React, { useState } from 'react';
+export default function FadeBox() {
+  const [isOpened, setIsOpened] = useState(true);
+  const [shouldRender, setShouldRender] = useState(true);
+
+  const handleClose = () => {
+    // 1. 투명도를 0으로 만드는 CSS 트리거 (애니메이션 시작)
+    setIsOpened(false);
+  };
+
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    // 2. 다른 CSS 속성이 아닌 'opacity' 애니메이션이 끝났을 때만 실행
+    if (e.propertyName === 'opacity' && !isOpened) {
+      setShouldRender(false); // 컴포넌트를 DOM에서 완전히 제거
+    }
+  };
+
+  if (!shouldRender) return null;
+
+  return (
+    <div>
+      <div
+        className="box"
+        onTransitionEnd={handleTransitionEnd} // 👈 이벤트 감지
+        style={{
+          opacity: isOpened ? 1 : 0,
+          transition: 'opacity 0.5s ease-in-out', // 0.5초 동안 애니메이션
+          width: '100px',
+          height: '100px',
+          backgroundColor: 'tomato',
+        }}
+      >
+        사라지는 상자
+      </div>
+      <button onClick={handleClose}>닫기</button>
+    </div>
+  );
+}
+
+------------------------------
+## ⚠️ TypeScript(TSX) 사용 시 주의점
+
+* 이벤트 타입 지정: 함수를 별도로 분리할 때 매개변수 e의 타입을 React.TransitionEvent<엘리먼트타입>으로 지정해야 안전합니다. (예: React.TransitionEvent<HTMLDivElement>)
+* 여러 속성 주의: 만약 width, opacity 등 여러 속성이 동시에 변하면 onTransitionEnd가 속성 개수만큼 여러 번 실행됩니다. 따라서 위 예시처럼 e.propertyName === 'opacity'와 같이 특정 속성을 조건문으로 체크하는 것이 좋습니다.
+
+혹시 이 기능을 활용해 모달창 닫기 효과나 슬라이더 컴포넌트를 구현하고 싶으신가요? 구현하려는 구체적인 컴포넌트 기능을 말씀해 주시면 맞춤 코드를 짜 드릴 수 있습니다.
+
